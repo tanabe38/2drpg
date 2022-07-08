@@ -1,13 +1,40 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
- 
+
+public enum Direction
+{
+    Up,
+    Down,
+    Left,
+    Right,
+}
+
 public class Player : MonoBehaviour
 {
+    const string TRIGGER_MoveDown = "MoveDownTrigger";
+    const string TRIGGER_MoveLeft = "MoveLeftTrigger";
+    const string TRIGGER_MoveRight = "MoveRightTrigger";
+    const string TRIGGER_MoveUp = "MoveUpTrigger";
+
+    Animator Animator { get => GetComponent<Animator>(); }
+    Coroutine _moveCoroutine;
+
     [Range(0, 2)] public float MoveSecond = 0.1f;
     [SerializeField] RPGSceneManager RPGSceneManager;
- 
-    Coroutine _moveCoroutine;
+
+    [SerializeField] Direction _currentDir  = Direction.Down;
+    public Direction CurrentDir
+    {
+        get => _currentDir;
+        set
+        {
+            if (_currentDir == value) return;
+            _currentDir = value;
+            SetDirAnimation(value);
+        }
+    }
+
     [SerializeField] Vector3Int _pos;
     public Vector3Int Pos
     {
@@ -15,7 +42,7 @@ public class Player : MonoBehaviour
         set
         {
             if (_pos == value) return;
- 
+
             if (RPGSceneManager.ActiveMap == null)
             {
                 _pos = value;
@@ -41,6 +68,18 @@ public class Player : MonoBehaviour
 
     public bool IsMoving { get => _moveCoroutine != null; }
 
+    public void SetDir(Vector3Int move)
+    {
+        if (Mathf.Abs(move.x) > Mathf.Abs(move.y))
+        {
+            CurrentDir = move.x > 0 ? Direction.Right : Direction.Left;
+        }
+        else
+        {
+            CurrentDir = move.y > 0 ? Direction.Up : Direction.Down;
+        }
+    }
+
     IEnumerator MoveCoroutine(Vector3Int pos)
     {
         var startPos = transform.position;
@@ -57,6 +96,22 @@ public class Player : MonoBehaviour
         _moveCoroutine = null;
     }
 
+    void SetDirAnimation(Direction dir)
+    {
+        if (Animator == null || Animator.runtimeAnimatorController == null) return;
+
+        string triggerName = null;
+        switch (dir)
+        {
+            case Direction.Up: triggerName = TRIGGER_MoveUp; break;
+            case Direction.Down: triggerName = TRIGGER_MoveDown; break;
+            case Direction.Left: triggerName = TRIGGER_MoveLeft; break;
+            case Direction.Right: triggerName = TRIGGER_MoveRight; break;
+            default: throw new System.NotImplementedException("");
+        }
+        Animator.SetTrigger(triggerName);
+    }
+
     private void Start()
     {
         if (RPGSceneManager == null) RPGSceneManager = Object.FindObjectOfType<RPGSceneManager>();
@@ -70,5 +125,10 @@ public class Player : MonoBehaviour
         {
             transform.position = RPGSceneManager.ActiveMap.Grid.CellToWorld(Pos) + new Vector3(0.2f, 0.2f, 0);
         }
+    }
+
+    private void Awake()
+    {
+        SetDirAnimation(_currentDir);
     }
 }
