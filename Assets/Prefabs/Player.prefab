@@ -7,6 +7,27 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 293088574473751111, guid: 926780a7434424a4e8e5182584555201,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 671fd3d19300da440a52cd1780c08e66, type: 2}
+    - target: {fileID: 2563443210095217351, guid: 926780a7434424a4e8e5182584555201,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 2563443210095217351, guid: 926780a7434424a4e8e5182584555201,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 2563443210095217351, guid: 926780a7434424a4e8e5182584555201,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 5312897540699203978, guid: dfd8fb924278d654683eaef17c8e829c,
+        type: 3}
     - target: {fileID: 2563443210095217351, guid: 926780a7434424a4e8e5182584555201,
         type: 3}
       propertyPath: m_SortingLayer
@@ -16,6 +37,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingLayerID
       value: -1567402461
+      objectReference: {fileID: 0}
+    - target: {fileID: 2563443210095217351, guid: 926780a7434424a4e8e5182584555201,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2563443211484931738, guid: 926780a7434424a4e8e5182584555201,
         type: 3}
