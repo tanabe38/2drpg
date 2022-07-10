@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
     public void SetPosNoCoroutine(Vector3Int pos)
     {
         _pos = pos;
-        transform.position = RPGSceneManager.ActiveMap.Grid.CellToWorld(pos);
+        transform.position = RPGSceneManager.ActiveMap.Grid.CellToWorld(pos) + new Vector3(0.2f, 0.2f, 0);
         Camera.main.transform.position = transform.position + Vector3.forward * -10 + new Vector3(0.2f, 0.2f, 0);
     }
 
