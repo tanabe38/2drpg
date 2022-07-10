@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50bb8e68470cb864a94568eebc0d76af, type: 3}
   m_Name: MoveFieldMapEvent
   m_EditorClassIdentifier: 
-  Tile: {fileID: 0}
-  MoveMapPrefab: {fileID: 0}
-  StartPosTile: {fileID: 0}
-  StartDirection: 0
+  Tile: {fileID: 11400000, guid: 97f299c9182a46e4faac80700db78d09, type: 2}
+  MoveMapPrefab: {fileID: 1788581558402692936, guid: a9b548ef9db92e94a86f076453272efa,
+    type: 3}
+  StartPosTile: {fileID: 11400000, guid: c1500ffef221ec9468bab6b7a0bc445d, type: 2}
+  StartDirection: 1
