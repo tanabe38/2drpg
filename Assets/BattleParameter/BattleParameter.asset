@@ -13,13 +13,16 @@ MonoBehaviour:
   m_Name: BattleParameter
   m_EditorClassIdentifier: 
   Data:
-    HP: 0
-    MaxHP: 0
-    Attack: 0
-    Defense: 0
-    Level: 0
+    HP: 15
+    MaxHP: 15
+    Attack: 5
+    Defense: 2
+    Level: 1
     Exp: 0
-    Money: 0
-    AttackWeapon: {fileID: 0}
-    DefenseWeapon: {fileID: 0}
-    Items: []
+    Money: 100
+    AttackWeapon: {fileID: 11400000, guid: 74fc1538e291e954fa1290f7a7323b29, type: 2}
+    DefenseWeapon: {fileID: 11400000, guid: 5993fc28f8864d84884bfb7a2ca5d891, type: 2}
+    Items:
+    - {fileID: 11400000, guid: 038b846a93bcfc04492c04885714a67b, type: 2}
+    - {fileID: 11400000, guid: 038b846a93bcfc04492c04885714a67b, type: 2}
+    - {fileID: 11400000, guid: 92a06187aaac70c4685e038ddfa8f780, type: 2}

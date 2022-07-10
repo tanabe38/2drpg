@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100ee751af5e6d140b226511297e36bd, type: 3}
   m_Name: TetuNoYoroi
   m_EditorClassIdentifier: 
-  Name: 
-  Description: 
-  Money: 0
-  Kind: 0
-  Power: 0
+  Name: "\u9244\u306E\u93A7"
+  Description: "Defense\u304C10\u4E0A\u304C\u308B"
+  Money: 150
+  Kind: 1
+  Power: 10

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100ee751af5e6d140b226511297e36bd, type: 3}
   m_Name: KawaNoFuku
   m_EditorClassIdentifier: 
-  Name: 
-  Description: 
-  Money: 0
-  Kind: 0
-  Power: 0
+  Name: "\u76AE\u306E\u670D"
+  Description: "Defense\u304C2\u4E0A\u304C\u308B"
+  Money: 50
+  Kind: 1
+  Power: 2

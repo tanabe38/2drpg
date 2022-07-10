@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100ee751af5e6d140b226511297e36bd, type: 3}
   m_Name: YuusyaNoYoroi
   m_EditorClassIdentifier: 
-  Name: 
-  Description: 
-  Money: 0
-  Kind: 0
-  Power: 0
+  Name: "\u52C7\u8005\u306E\u93A7"
+  Description: "Defense\u304C20\u4E0A\u304C\u308B"
+  Money: 500
+  Kind: 1
+  Power: 20
