@@ -17,6 +17,9 @@ public class CharacterBase : MonoBehaviour
     [SerializeField] protected RPGSceneManager RPGSceneManager;
 
     Coroutine _moveCoroutine;
+
+    public MassEvent Event;
+
     [SerializeField] Vector3Int _pos;
     public virtual Vector3Int Pos
     {

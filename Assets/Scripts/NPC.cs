@@ -18,8 +18,12 @@ public class NPC : CharacterBase
         var rnd = new System.Random();
         while(true)
         {
+            yield return new WaitWhile(() => RPGSceneManager.IsPauseScene);
+
             var waitSecond = WaitSecond * (float)rnd.NextDouble();
             yield return new WaitForSeconds(waitSecond);
+
+            yield return new WaitWhile(() => RPGSceneManager.IsPauseScene);
 
             var move = Vector3Int.zero;
             switch(rnd.Next() % 4)
