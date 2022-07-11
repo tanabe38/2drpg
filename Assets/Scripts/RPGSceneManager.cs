@@ -7,6 +7,7 @@ public class RPGSceneManager : MonoBehaviour
     public Player Player;
     public Map ActiveMap;
     public MessageWindow MessageWindow;
+    public Menu Menu;
 
     Coroutine _currentCoroutine;
     // Start is called before the first frame update
@@ -40,6 +41,11 @@ public class RPGSceneManager : MonoBehaviour
                 }
             }
             yield return new WaitWhile(() => IsPauseScene);
+
+            if(Input.GetKeyDown(KeyCode.E))
+            {
+                OpenMenu();
+            }
         }
     }
 
@@ -76,7 +82,12 @@ public class RPGSceneManager : MonoBehaviour
     {
         get
         {
-            return !MessageWindow.IsEndMessage;
+            return !MessageWindow.IsEndMessage || Menu.DoOpen;
         }
+    }
+
+    public void OpenMenu()
+    {
+        Menu.Open();
     }
 }
