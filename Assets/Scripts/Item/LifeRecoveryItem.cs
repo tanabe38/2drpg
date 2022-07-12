@@ -6,4 +6,10 @@ using UnityEngine;
 public class LifeRecoveryItem : Item
 {
     public int RecoveryPower;
+
+    public override void Use(BattleParameterBase target)
+    {
+        target.HP += RecoveryPower;
+        if (target.MaxHP < target.HP) target.HP = target.MaxHP;
+    }
 }
