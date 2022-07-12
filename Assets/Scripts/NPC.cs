@@ -5,6 +5,7 @@ using UnityEngine;
 public class NPC : CharacterBase
 {
     [SerializeField, Range(0.1f, 5f)] float WaitSecond = 1f;
+    public bool DoMovable = true;
 
     protected override void Start()
     {
@@ -18,6 +19,8 @@ public class NPC : CharacterBase
         var rnd = new System.Random();
         while(true)
         {
+            yield return new WaitWhile(() => !DoMovable);
+
             yield return new WaitWhile(() => RPGSceneManager.IsPauseScene);
 
             var waitSecond = WaitSecond * (float)rnd.NextDouble();
