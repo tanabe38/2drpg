@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
- 
+using UnityEngine.Events;
+
 [System.Serializable]
 public class BattleParameterBase
 {
@@ -25,6 +26,9 @@ public class BattleParameterBase
 
     public bool IsLimitItemCount { get => Items.Count >= 4; }
 
+    public bool IsNowDefense { get; set; } = false;
+
+
     public virtual void CopyTo(BattleParameterBase dest)
     {
         dest.HP = HP;
@@ -39,6 +43,25 @@ public class BattleParameterBase
         dest.DefenseWeapon = DefenseWeapon;
  
         dest.Items = new List<Item>(Items.ToArray());
+    }
+
+    public class AttackResult
+    {
+        public int LeaveHP;
+        public int Damage;
+    }
+    public virtual bool AttackTo(BattleParameterBase target, out AttackResult result)
+    {
+        result = new AttackResult();
+
+        result.Damage = Mathf.Max(0, AttackPower - target.DefensePower);
+        if (target.IsNowDefense)
+        {
+            result.Damage /= 2;
+        }
+        target.HP -= result.Damage;
+        result.LeaveHP = target.HP;
+        return target.HP <= 0;
     }
 }
  
