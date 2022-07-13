@@ -10,6 +10,16 @@ public class RPGSceneManager : MonoBehaviour
     public Menu Menu;
     public ItemShopMenu ItemShopMenu;
 
+    [SerializeField] public BattleWindow BattleWindow;
+    private void Update()
+    {
+        //確認用なので後のち削除する
+        if(Input.GetKeyDown(KeyCode.B))
+        {
+            BattleWindow.Open();
+        }
+    }
+
     Coroutine _currentCoroutine;
     // Start is called before the first frame update
     void Start()
@@ -83,7 +93,7 @@ public class RPGSceneManager : MonoBehaviour
     {
         get
         {
-            return !MessageWindow.IsEndMessage || Menu.DoOpen || ItemShopMenu.DoOpen;
+            return !MessageWindow.IsEndMessage || Menu.DoOpen || ItemShopMenu.DoOpen || BattleWindow.DoOpen;
         }
     }
 
