@@ -7,6 +7,7 @@ using System.Linq;
 public class Menu : MonoBehaviour
 {
     public MenuRoot FirstMenuRoot;
+    public bool EnableInput { get; set; } = true;
 
     public bool DoOpen { get => gameObject.activeSelf; }
     public virtual void Open()
@@ -47,6 +48,7 @@ public class Menu : MonoBehaviour
 
     IEnumerator UpdateWhenOpen()
     {
+        EnableInput = true;
         var menuRoots = GetComponentsInChildren<MenuRoot>();
         foreach(var root in menuRoots)
         {
@@ -80,7 +82,7 @@ public class Menu : MonoBehaviour
             {
                 Cancel(current);
             }
-            yield return null;
+            yield return new WaitUntil(() => EnableInput);
         }
         gameObject.SetActive(false);
     }

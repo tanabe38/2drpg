@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c399dc9730e21e645a1994bc6c90e574, type: 3}
+  m_Name: ItemShopEvent
+  m_EditorClassIdentifier: 
+  Tile: {fileID: 0}
+  Items:
+  - {fileID: 11400000, guid: 038b846a93bcfc04492c04885714a67b, type: 2}
+  - {fileID: 11400000, guid: 92a06187aaac70c4685e038ddfa8f780, type: 2}
+  - {fileID: 11400000, guid: 9f77936533fd7b84fb226c2178b8e641, type: 2}
+  - {fileID: 11400000, guid: 24a3eccebdfdfb24aa6c7cb338c0c29e, type: 2}
+  - {fileID: 11400000, guid: 03eba9d7a49286d49adffc6af19d1077, type: 2}
+  - {fileID: 11400000, guid: 0d22680e7d7675a4a9ee66d7396efa49, type: 2}
+  Message: "\u3044\u3089\u3063\u3057\u3083\u3044\u3002"
+  AskBuyMessage: "#0($#1)\u3092\u8CFC\u5165\u3059\u308B\u304B\u3044\uFF1F\r\n<YESNO>"
+  BuyMessage: "\u307E\u3044\u3069\uFF01(\u6240\u6301\u91D1\u6B8B\u308A$#0 (-#1))"
+  NotEnoughMoneyMessage: "\u304A\u91D1\u304C\u305F\u308A\u306A\u3044\u3088\u3002(\u6240\u6301\u91D1$#0)"
+  ItemCountOverMessage: "\u3053\u308C\u4EE5\u4E0A\u30A2\u30A4\u30C6\u30E0\u3092\u6301\u3066\u306A\u3044\u3088\u3002"
+  CloseMessage: "\u307E\u305F\u306E\u304A\u3053\u3057\u3092\u3002"

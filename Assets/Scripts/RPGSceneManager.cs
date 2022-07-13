@@ -8,6 +8,7 @@ public class RPGSceneManager : MonoBehaviour
     public Map ActiveMap;
     public MessageWindow MessageWindow;
     public Menu Menu;
+    public ItemShopMenu ItemShopMenu;
 
     Coroutine _currentCoroutine;
     // Start is called before the first frame update
@@ -82,7 +83,7 @@ public class RPGSceneManager : MonoBehaviour
     {
         get
         {
-            return !MessageWindow.IsEndMessage || Menu.DoOpen;
+            return !MessageWindow.IsEndMessage || Menu.DoOpen || ItemShopMenu.DoOpen;
         }
     }
 
