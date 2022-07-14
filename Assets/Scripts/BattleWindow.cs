@@ -17,10 +17,12 @@ public class BattleWindow : Menu
     [SerializeField] EncounterEnemies UseEncounter;
     [SerializeField] Animator AttackEffectPrefab;
 
-    [Min(0)] public float EscapeWaitSecond = 1f;
     public EncounterEnemies Encounter { get; private set; }
-
     bool DoEscape { get; set; }
+    public BattleParameterBase Player { get => RPGSceneManager.Player.BattleParameter; }
+    public RPGSceneManager GetRPGSceneManager { get => RPGSceneManager; }
+
+    [Min(0)] public float EscapeWaitSecond = 1f;
 
     Animator AttackEffect;
 

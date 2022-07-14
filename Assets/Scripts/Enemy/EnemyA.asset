@@ -25,3 +25,4 @@ MonoBehaviour:
     Items: []
   Name: "\u30B6\uFF5E\u30B3"
   Sprite: {fileID: -2472143564103836379, guid: 9ffbcb514240ff2469358c0aef242beb, type: 3}
+  UseEnemyAI: {fileID: 11400000, guid: cb10a9a0f86e4ca4fbb37ee4a7cdf745, type: 2}

@@ -8,6 +8,7 @@ public class Enemy : ScriptableObject
     public BattleParameterBase Data;
     public string Name;
     public Sprite Sprite;
+    public EnemyAI UseEnemyAI;
 
     public virtual Enemy Clone()
     {
@@ -16,13 +17,12 @@ public class Enemy : ScriptableObject
         Data.CopyTo(clone.Data);
         clone.Name = Name;
         clone.Sprite = Sprite;
+        clone.UseEnemyAI = UseEnemyAI.Clone();
         return clone;
     }
 
     public virtual TurnInfo BattleAction(BattleWindow battleWindow)
     {
-        var info = new TurnInfo();
-        info.Message = $"{Name}のターン。<未実装>";
-        return info;
+        return UseEnemyAI.BattleAction(this, battleWindow);
     }
 }
