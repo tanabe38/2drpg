@@ -18,8 +18,11 @@ MonoBehaviour:
     Attack: 2
     Defense: 1
     Level: 1
-    Exp: 0
+    Exp: 20
     Money: 10
+    LimitAttack: 100
+    LimitDefense: 100
+    LimitHP: 500
     AttackWeapon: {fileID: 0}
     DefenseWeapon: {fileID: 0}
     Items: []

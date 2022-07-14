@@ -20,6 +20,9 @@ MonoBehaviour:
     Level: 1
     Exp: 0
     Money: 100
+    LimitAttack: 1000
+    LimitDefense: 700
+    LimitHP: 1500
     AttackWeapon: {fileID: 11400000, guid: 74fc1538e291e954fa1290f7a7323b29, type: 2}
     DefenseWeapon: {fileID: 11400000, guid: 5993fc28f8864d84884bfb7a2ca5d891, type: 2}
     Items:
