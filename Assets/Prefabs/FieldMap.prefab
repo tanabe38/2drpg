@@ -3724,6 +3724,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _massEvents:
   - {fileID: 11400000, guid: f57267a25fbbb3f4e9266b7742d69d71, type: 2}
+  RandomEncount: {fileID: 11400000, guid: f4771e85f7d2e4c4b9452c9b83919c1a, type: 2}
 --- !u!1001 &7884764596247178818
 PrefabInstance:
   m_ObjectHideFlags: 0

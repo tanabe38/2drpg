@@ -822,6 +822,9 @@ MonoBehaviour:
     Level: 0
     Exp: 0
     Money: 500
+    LimitAttack: 100
+    LimitDefense: 100
+    LimitHP: 500
     AttackWeapon: {fileID: 0}
     DefenseWeapon: {fileID: 0}
     Items: []
@@ -5529,6 +5532,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1788581558402692936, guid: a9b548ef9db92e94a86f076453272efa,
+        type: 3}
+      propertyPath: RandomEncount
+      value: 
+      objectReference: {fileID: 11400000, guid: f4771e85f7d2e4c4b9452c9b83919c1a,
+        type: 2}
     - target: {fileID: 2707063475789907445, guid: a9b548ef9db92e94a86f076453272efa,
         type: 3}
       propertyPath: m_LocalPosition.x

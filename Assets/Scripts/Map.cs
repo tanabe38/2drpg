@@ -15,6 +15,9 @@ public class Map : MonoBehaviour
     const string EVENT_BOX_TILEMAP_NAME = "EventBox";
 
     [SerializeField] List<MassEvent> _massEvents;
+
+    public RandomEncount RandomEncount;
+
     public MassEvent FindMassEvent(TileBase tile)
     {
         return _massEvents.Find(_c => _c.Tile == tile);

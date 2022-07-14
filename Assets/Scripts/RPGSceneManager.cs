@@ -11,14 +11,6 @@ public class RPGSceneManager : MonoBehaviour
     public ItemShopMenu ItemShopMenu;
 
     [SerializeField] public BattleWindow BattleWindow;
-    private void Update()
-    {
-        //確認用なので後のち削除する
-        if(Input.GetKeyDown(KeyCode.B))
-        {
-            BattleWindow.Open();
-        }
-    }
 
     Coroutine _currentCoroutine;
     // Start is called before the first frame update
@@ -45,6 +37,16 @@ public class RPGSceneManager : MonoBehaviour
                     {
                         massData.massEvent.Exec(this);
                     }
+                    else if(ActiveMap.RandomEncount != null)
+                    {
+                        var rnd = new System.Random();
+                        var encount = ActiveMap.RandomEncount.Encount(rnd);
+                        if(encount != null)
+                        {
+                            BattleWindow.SetUseEncounter(encount);
+                            BattleWindow.Open();
+                        }
+                    }
                 }
                 else if(massData.character != null && massData.character.Event != null)
                 {
@@ -64,19 +66,19 @@ public class RPGSceneManager : MonoBehaviour
     {
         var doMove = false;
         move = Vector3Int.zero;
-        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
             move.x -= 1; doMove = true;
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+        else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
             move.x += 1; doMove = true;
         }
-        else if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
+        else if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
             move.y += 1; doMove = true;
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
+        else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
         {
             move.y -= 1; doMove = true;
         }

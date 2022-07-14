@@ -302,4 +302,6 @@ public class BattleWindow : Menu
         RPGSceneManager.Player.BattleParameter.IsNowDefense = false;
         EnableInput = true;
     }
+
+    public void SetUseEncounter(EncounterEnemies encounter) { UseEncounter = encounter; }
 }

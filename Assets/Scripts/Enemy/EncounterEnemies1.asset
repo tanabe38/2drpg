@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1c60aaec6cccce1459fdda30afdaf832, type: 3}
-  m_Name: EncounterEnemies
+  m_Name: EncounterEnemies1
   m_EditorClassIdentifier: 
   EscapeSuccessRate: 0.7
   Enemies:
-  - {fileID: 11400000, guid: 2f9d029dc2222744088a55bf6e2051e4, type: 2}
   - {fileID: 11400000, guid: 2f9d029dc2222744088a55bf6e2051e4, type: 2}
