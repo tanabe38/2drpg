@@ -1210,6 +1210,8 @@ MonoBehaviour:
   Description: {fileID: 96242532}
   ParameterRoot: {fileID: 496054728}
   UseEncounter: {fileID: 11400000, guid: 5d58806ee6de88447b3be41b7f788f76, type: 2}
+  AttackEffectPrefab: {fileID: 0}
+  EscapeWaitSecond: 1
 --- !u!1 &354030710
 GameObject:
   m_ObjectHideFlags: 0
