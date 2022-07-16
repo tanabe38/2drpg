@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 840db5b56f2db0e4fb065b8bfdb9f495, type: 3}
-  m_Name: EnemyA
+  m_Name: EnemyBoss
   m_EditorClassIdentifier: 
   Data:
-    HP: 10
-    MaxHP: 10
-    Attack: 6
-    Defense: 1
-    Level: 1
-    Exp: 20
-    Money: 10
+    HP: 100
+    MaxHP: 100
+    Attack: 20
+    Defense: 15
+    Level: 10
+    Exp: 130
+    Money: 1000
     LimitAttack: 100
     LimitDefense: 100
     LimitHP: 500
     AttackWeapon: {fileID: 0}
     DefenseWeapon: {fileID: 0}
     Items: []
-  Name: "\u30B6\uFF5E\u30B3"
-  Sprite: {fileID: -2472143564103836379, guid: 9ffbcb514240ff2469358c0aef242beb, type: 3}
+  Name: "\u30DC\u30B9"
+  Sprite: {fileID: 3399575336396128133, guid: 9ffbcb514240ff2469358c0aef242beb, type: 3}
   UseEnemyAI: {fileID: 11400000, guid: cb10a9a0f86e4ca4fbb37ee4a7cdf745, type: 2}
