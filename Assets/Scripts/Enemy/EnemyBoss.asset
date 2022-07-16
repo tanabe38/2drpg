@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: EnemyBoss
   m_EditorClassIdentifier: 
   Data:
-    HP: 100
-    MaxHP: 100
-    Attack: 20
-    Defense: 15
-    Level: 10
-    Exp: 130
-    Money: 1000
-    LimitAttack: 100
-    LimitDefense: 100
-    LimitHP: 500
+    HP: 5000
+    MaxHP: 5000
+    Attack: 200
+    Defense: 150
+    Level: 50
+    Exp: 5000
+    Money: 10000
+    LimitAttack: 1000
+    LimitDefense: 700
+    LimitHP: 10000
     AttackWeapon: {fileID: 0}
     DefenseWeapon: {fileID: 0}
     Items: []

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5430f3daff0c73d41bec51fb68b3c7a9, type: 3}
   m_Name: DungeonMapEncounter
   m_EditorClassIdentifier: 
-  EncountRate: 0.5
+  EncountRate: 0.2
   List:
   - EncountRate: 0.5
     EncounterEnemies: {fileID: 11400000, guid: 4991731dde79ef841a254b821d1c2a15, type: 2}

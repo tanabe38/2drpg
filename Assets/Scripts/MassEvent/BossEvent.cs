@@ -34,6 +34,7 @@ public class BossEvent : MassEvent
         else
         {
             Boss.Kill();
+            manager.GameClear();
         }
     }
 }
