@@ -29,6 +29,7 @@ public class MainMenu : Menu
             Description.transform.parent.gameObject.SetActive(false);
         }
     }
+
     Item GetItem(BattleParameterBase param, int index)
     {
         int i = 0;
@@ -128,5 +129,23 @@ public class MainMenu : Menu
         var root = ParameterRoot.transform.Find(name);
         var textObj = root.Find("Text").GetComponent<Text>();
         textObj.text = text;
+    }
+
+    public void Save()
+    {
+        StartCoroutine(SaveCoroutine());
+    }
+
+    IEnumerator SaveCoroutine()
+    {
+        var saveData = Object.FindObjectOfType<SaveData>();
+        Debug.Log(saveData);
+        saveData.Save(RPGSceneManager);
+ 
+        EnableInput = false;
+        RPGSceneManager.MessageWindow.StartMessage("セーブしました。");
+ 
+        yield return new WaitUntil(() => RPGSceneManager.MessageWindow.IsEndMessage);
+        EnableInput = true;
     }
 }

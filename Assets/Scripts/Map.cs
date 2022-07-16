@@ -6,24 +6,25 @@ using UnityEngine.Tilemaps;
 
 public class Map : MonoBehaviour
 {
-    public Grid Grid { get => GetComponent<Grid>(); }
-    Dictionary<string, Tilemap> _tilemaps;
+    [SerializeField] List<MassEvent> _massEvents;
 
     const string BACKGROND_TILEMAP_NAME = "Background";
     const string NONE_OBJECTS_TILEMAP_NAME = "NoneObjects";
     const string OBJECTS_TILEMAP_NAME = "Objects";
     const string EVENT_BOX_TILEMAP_NAME = "EventBox";
 
-    [SerializeField] List<MassEvent> _massEvents;
+    public Grid Grid { get => GetComponent<Grid>(); }
 
     public RandomEncount RandomEncount;
+    Dictionary<string, Tilemap> _tilemaps;
+    HashSet<CharacterBase> _characters = new HashSet<CharacterBase>();
+
 
     public MassEvent FindMassEvent(TileBase tile)
     {
         return _massEvents.Find(_c => _c.Tile == tile);
     }
 
-    HashSet<CharacterBase> _characters = new HashSet<CharacterBase>();
     public void AddCharacter(CharacterBase character)
     {
         if(!_characters.Contains(character) && character != null)
@@ -34,7 +35,7 @@ public class Map : MonoBehaviour
 
     public CharacterBase GetCharacter(Vector3Int pos)
     {
-        return _characters.FirstOrDefault(_c => _c.Pos == pos);
+        return _characters.Where(_c => _c.IsActive).FirstOrDefault(_c => _c.Pos == pos);
     }
 
     public bool FindMassEventPos(TileBase tile, out Vector3Int pos)
@@ -104,5 +105,31 @@ public class Map : MonoBehaviour
             mass.isMovable = false;
         }
         return mass;
+    }
+
+    [System.Serializable]
+    public class InstantSaveData
+    {
+        public List<string> characters = new List<string>();
+    }
+
+    public InstantSaveData GetInstantSaveData()
+    {
+        var saveData = new InstantSaveData();
+        saveData.characters = _characters.Select(_c => _c.GetInstantSaveData()).Where(_s => _s != null).Select(_s => JsonUtility.ToJson(_s)).ToList();
+        return saveData;
+    }
+
+    [System.Serializable]
+    public class SaveData
+    {
+        public List<string> characters = new List<string>();
+    }
+
+    public SaveData GetSaveData()
+    {
+        var saveData = new SaveData();
+        saveData.characters = _characters.Where(_c => !(_c is Player)).Select(_c => _c.GetSaveData()).Where(_s => _s != null).Select(_s => JsonUtility.ToJson(_s)).ToList();
+        return saveData;
     }
 }

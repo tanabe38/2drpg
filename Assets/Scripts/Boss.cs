@@ -6,6 +6,20 @@ public class Boss : CharacterBase
 {
     public void Kill()
     {
-        Object.Destroy(gameObject);
+        IsActive = false;
+    }
+
+    public class BossSaveData : SaveData
+    {
+        public bool IsKill;
+        public BossSaveData(Boss self) : base(self)
+        {
+            IsKill = !self.IsActive;
+        }
+    }
+
+    public override SaveData GetSaveData()
+    {
+        return new BossSaveData(this);
     }
 }

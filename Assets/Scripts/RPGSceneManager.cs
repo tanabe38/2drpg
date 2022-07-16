@@ -4,19 +4,22 @@ using UnityEngine;
 
 public class RPGSceneManager : MonoBehaviour
 {
-    public Player Player;
-    public Map ActiveMap;
-    public MessageWindow MessageWindow;
-    public Menu Menu;
-    public ItemShopMenu ItemShopMenu;
-    public Vector3Int MassEventPos { get; private set; }
-
     [SerializeField] public BattleWindow BattleWindow;
     [SerializeField, TextArea(3, 15)] string GameOverMessage = "体力が無くなった...";
     [SerializeField] Map RespawnMapPrefab;
     [SerializeField] Vector3Int RespawnPos;
     [SerializeField, TextArea(3, 15)] string GameClearMessage = "ゲームクリアー";
     [SerializeField] GameClear gameClearObj;
+
+    public Vector3Int MassEventPos { get; private set; }
+
+    public Player Player;
+    public Map ActiveMap;
+    public MessageWindow MessageWindow;
+    public Menu Menu;
+    public ItemShopMenu ItemShopMenu;
+    public ItemList ItemList;
+    Coroutine _currentCoroutine;
 
     public void GameClear()
     {
@@ -64,8 +67,6 @@ public class RPGSceneManager : MonoBehaviour
         _currentCoroutine = StartCoroutine(MovePlayer());
     }
 
-    Coroutine _currentCoroutine;
-    // Start is called before the first frame update
     void Start()
     {
         _currentCoroutine = StartCoroutine(MovePlayer());

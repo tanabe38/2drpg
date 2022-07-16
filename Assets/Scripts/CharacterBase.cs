@@ -14,12 +14,26 @@ public class CharacterBase : MonoBehaviour
 {
     [Range(0, 2)] public float MoveSecond = 0.1f;
     [SerializeField] protected RPGSceneManager RPGSceneManager;
+    [SerializeField] Vector3Int _pos;
+    [SerializeField] Direction _currentDir = Direction.Down;
 
-    Coroutine _moveCoroutine;
+    const string TRIGGER_MoveDown = "MoveDownTrigger";
+    const string TRIGGER_MoveLeft = "MoveLeftTrigger";
+    const string TRIGGER_MoveRight = "MoveRightTrigger";
+    const string TRIGGER_MoveUp = "MoveUpTrigger";
+
+
+    public bool IsActive { get => gameObject.activeSelf; set => gameObject.SetActive(value); }
+    public string IdentityKey { get => $"{gameObject.name}_{GetType().Name}_{InitialPos}"; }
+    public bool IsMoving { get => _moveCoroutine != null; }
+    protected Animator Animator { get => GetComponent<Animator>(); }
+    Vector3Int InitialPos { get; set; }
 
     public MassEvent Event;
+    public bool DoMoveCamera = false;
+    Coroutine _moveCoroutine;
+    private Vector3 playerPivot = new Vector3(0.16f, 0.16f, 0.0f); //スプライトスライス時に中心からずれたピボット分の値
 
-    [SerializeField] Vector3Int _pos;
     public virtual Vector3Int Pos
     {
         get => _pos;
@@ -42,16 +56,14 @@ public class CharacterBase : MonoBehaviour
             }
         }
     }
+
     public virtual void SetPosNoCoroutine(Vector3Int pos)
     {
         _pos = pos;
         transform.position = RPGSceneManager.ActiveMap.Grid.CellToWorld(pos) + new Vector3(0.2f, 0.2f, 0);
         MoveCamera();
     }
-    public bool IsMoving { get => _moveCoroutine != null; }
-    public bool DoMoveCamera = false;
 
-    [SerializeField] Direction _currentDir = Direction.Down;
     public virtual Direction CurrentDir
     {
         get => _currentDir;
@@ -62,6 +74,7 @@ public class CharacterBase : MonoBehaviour
             SetDirAnimation(value);
         }
     }
+
     public virtual void SetDir(Vector3Int move)
     {
         if (Mathf.Abs(move.x) > Mathf.Abs(move.y))
@@ -85,12 +98,6 @@ public class CharacterBase : MonoBehaviour
             return null;
         }
     }
-
-    protected Animator Animator { get => GetComponent<Animator>(); }
-    const string TRIGGER_MoveDown = "MoveDownTrigger";
-    const string TRIGGER_MoveLeft = "MoveLeftTrigger";
-    const string TRIGGER_MoveRight = "MoveRightTrigger";
-    const string TRIGGER_MoveUp = "MoveUpTrigger";
 
     protected void SetDirAnimation(Direction dir)
     {
@@ -127,6 +134,7 @@ public class CharacterBase : MonoBehaviour
 
     protected virtual void Awake()
     {
+        InitialPos = Pos;
         SetDirAnimation(_currentDir);
     }
 
@@ -163,10 +171,46 @@ public class CharacterBase : MonoBehaviour
         }
     }
 
-    private Vector3 playerPivot = new Vector3(0.16f, 0.16f, 0.0f); //スプライトスライス時に中心からずれたピボット分の値
     private void MoveCamera()
     {
         if(DoMoveCamera == true) Camera.main.transform.position = transform.position + Vector3.forward * -10 + playerPivot + new Vector3(0.2f, 0.2f, 0);
     }
 
+    [System.Serializable]
+    public class InstantSaveData
+    {
+        public string id;
+        public Vector3Int Pos;
+        public Direction Direction;
+
+        public InstantSaveData() { }
+        public InstantSaveData(CharacterBase character)
+        {
+            id = character.IdentityKey;
+            Pos = character.Pos;
+            Direction = character.CurrentDir;
+        }
+    }
+
+    public virtual InstantSaveData GetInstantSaveData()
+    {
+        return new InstantSaveData(this);
+    }
+
+    [System.Serializable]
+    public class SaveData
+    {
+        public string id;
+
+        public SaveData() { }
+        public SaveData(CharacterBase character)
+        {
+            id = character.IdentityKey;
+        }
+    }
+
+    public virtual SaveData GetSaveData()
+    {
+        return null;
+    }
 }

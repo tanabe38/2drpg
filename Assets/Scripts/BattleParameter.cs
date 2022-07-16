@@ -98,3 +98,24 @@ public class BattleParameter : ScriptableObject
 {
     public BattleParameterBase Data;
 }
+
+[System.Serializable]
+public class BattleParameterBaseSaveData
+{
+    public string paramJson;
+    public int attackWeaponIndex;
+    public int defenseWeaponIndex;
+    public int[] itemsIndex;
+ 
+    public BattleParameterBaseSaveData(BattleParameterBase param, ItemList itemList)
+    {
+        paramJson = JsonUtility.ToJson(param);
+        attackWeaponIndex = itemList.FindIndex(param.AttackWeapon);
+        defenseWeaponIndex = itemList.FindIndex(param.DefenseWeapon);
+        itemsIndex = new int[param.Items.Count];
+        for (var i = 0; i < itemsIndex.Length; ++i)
+        {
+            itemsIndex[i] = itemList.FindIndex(param.Items[i]);
+        }
+    }
+}
