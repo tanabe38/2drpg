@@ -139,7 +139,6 @@ public class MainMenu : Menu
     IEnumerator SaveCoroutine()
     {
         var saveData = Object.FindObjectOfType<SaveData>();
-        Debug.Log(saveData);
         saveData.Save(RPGSceneManager);
  
         EnableInput = false;
@@ -147,5 +146,25 @@ public class MainMenu : Menu
  
         yield return new WaitUntil(() => RPGSceneManager.MessageWindow.IsEndMessage);
         EnableInput = true;
+    }
+
+    public void Load()
+    {
+        StartCoroutine(LoadCoroutine());
+    }
+ 
+    IEnumerator LoadCoroutine()
+    {
+        var saveData = Object.FindObjectOfType<SaveData>();
+        saveData.Load(RPGSceneManager);
+ 
+        yield return new WaitWhile(() => saveData.NowLoading);
+ 
+        EnableInput = false;
+        RPGSceneManager.MessageWindow.StartMessage(saveData.IsSuccessLoad ? "ロードしました。" : "ロードに失敗しました...");
+ 
+        yield return new WaitUntil(() => RPGSceneManager.MessageWindow.IsEndMessage);
+        EnableInput = true;
+        Close();
     }
 }

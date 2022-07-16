@@ -22,4 +22,14 @@ public class Boss : CharacterBase
     {
         return new BossSaveData(this);
     }
+
+    public override void LoadSaveData(string saveDataJson)
+    {
+        base.LoadSaveData(saveDataJson);
+
+        var saveData = JsonUtility.FromJson<BossSaveData>(saveDataJson);
+        if (saveData == null) return;
+
+        IsActive = !saveData.IsKill;
+    }
 }

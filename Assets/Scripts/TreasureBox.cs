@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GameSaveData = SaveData;
- 
+
 public class TreasureBox : CharacterBase
 {
     [SerializeField] bool _doOpen;
@@ -20,7 +20,7 @@ public class TreasureBox : CharacterBase
     {
         DoOpen = true;
     }
- 
+
     public class TreasureSaveData : SaveData
     {
         public bool DoOpen;
@@ -29,10 +29,19 @@ public class TreasureBox : CharacterBase
             DoOpen = self.DoOpen;
         }
     }
- 
+
     public override SaveData GetSaveData()
     {
         return new TreasureSaveData(this);
     }
- 
+
+    public override void LoadSaveData(string saveDataJson)
+    {
+        base.LoadSaveData(saveDataJson);
+
+        var saveData = JsonUtility.FromJson<TreasureSaveData>(saveDataJson);
+        if (saveData == null) return;
+
+        DoOpen = saveData.DoOpen;
+    }
 }

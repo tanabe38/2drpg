@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using GlobalSaveData = SaveData;
 
 public class Map : MonoBehaviour
 {
@@ -54,6 +55,12 @@ public class Map : MonoBehaviour
             }
         }
         return false;
+    }
+
+    private void Start()
+    {
+        var saveData = Object.FindObjectOfType<GlobalSaveData>();
+        saveData.LoadSaveData(this);
     }
 
     private void Awake()
@@ -131,5 +138,55 @@ public class Map : MonoBehaviour
         var saveData = new SaveData();
         saveData.characters = _characters.Where(_c => !(_c is Player)).Select(_c => _c.GetSaveData()).Where(_s => _s != null).Select(_s => JsonUtility.ToJson(_s)).ToList();
         return saveData;
+    }
+
+    public CharacterBase GetCharacterId(string id)
+    {
+        return _characters.FirstOrDefault(_c => _c.IdentityKey == id);
+    }
+
+    public void Load(InstantSaveData saveData)
+    {
+        if (saveData.characters != null)
+        {
+
+            foreach (var json in saveData.characters)
+            {
+                var data = JsonUtility.FromJson<CharacterBase.SaveData>(json);
+                if (data == null) continue;
+
+                var ch = GetCharacterId(data.id);
+                if (ch != null)
+                {
+                    ch.LoadInstantSaveData(json);
+                }
+                else
+                {
+                    Debug.LogError($"Don't found character={data.id}...");
+                }
+            }
+        }
+    }
+
+    public void Load(SaveData saveData)
+    {
+        if(saveData.characters != null)
+        {
+            foreach (var json in saveData.characters)
+            {
+                var data = JsonUtility.FromJson<CharacterBase.SaveData>(json);
+                if (data == null) continue;
+
+                var ch = GetCharacterId(data.id);
+                if (ch != null)
+                {
+                    ch.LoadSaveData(json);
+                }
+                else
+                {
+                    Debug.LogError($"Don't found character={data.id}...");
+                }
+            }
+        }
     }
 }

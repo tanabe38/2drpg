@@ -12,6 +12,9 @@ public class MoveMapEvent : MassEvent
 
     public override void Exec(RPGSceneManager manager)
     {
+        var saveData = Object.FindObjectOfType<SaveData>();
+        saveData.SaveTemporary(manager.ActiveMap);
+
         Object.Destroy(manager.ActiveMap.gameObject);
         manager.ActiveMap = Object.Instantiate(MoveMapPrefab);
 

@@ -118,4 +118,18 @@ public class BattleParameterBaseSaveData
             itemsIndex[i] = itemList.FindIndex(param.Items[i]);
         }
     }
+
+    public BattleParameterBase Load(ItemList itemList)
+    {
+        var inst = JsonUtility.FromJson<BattleParameterBase>(paramJson);
+ 
+        inst.AttackWeapon = itemList[attackWeaponIndex] as Weapon;
+        inst.DefenseWeapon = itemList[defenseWeaponIndex] as Weapon;
+        inst.Items = new List<Item>(itemsIndex.Length);
+        for(var i=0; i< itemsIndex.Length; ++i)
+        {
+            inst.Items.Add(itemList[itemsIndex[i]]);
+        }
+        return inst;
+    }
 }

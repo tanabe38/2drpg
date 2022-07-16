@@ -29,4 +29,10 @@ public class Player : CharacterBase
     {
         return new PlayerSaveData(this, RPGSceneManager);
     }
+
+    public override void LoadSaveData(string saveDataJson)
+    {
+        var saveData = JsonUtility.FromJson<PlayerSaveData>(saveDataJson);
+        BattleParameter = saveData.battleParameter.Load(RPGSceneManager.ItemList);
+    }
 }
