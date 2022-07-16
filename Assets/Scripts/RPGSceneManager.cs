@@ -19,6 +19,7 @@ public class RPGSceneManager : MonoBehaviour
     public Menu Menu;
     public ItemShopMenu ItemShopMenu;
     public ItemList ItemList;
+    public TitleMenu TitleMenu;
     Coroutine _currentCoroutine;
 
     public void GameClear()
@@ -31,10 +32,10 @@ public class RPGSceneManager : MonoBehaviour
     {
         MessageWindow.StartMessage(GameClearMessage);
         yield return new WaitUntil(() => MessageWindow.IsEndMessage);
- 
+
         gameClearObj.StartMessage(gameClearObj.Message);
         yield return new WaitWhile(() => gameClearObj.DoOpen);
- 
+
         _currentCoroutine = null;
         RespawnMap(false);
     }
@@ -69,7 +70,7 @@ public class RPGSceneManager : MonoBehaviour
 
     void Start()
     {
-        _currentCoroutine = StartCoroutine(MovePlayer());
+        StartTitle();
     }
 
     IEnumerator MovePlayer()
@@ -163,5 +164,31 @@ public class RPGSceneManager : MonoBehaviour
     public void OpenMenu()
     {
         Menu.Open();
+    }
+
+    public void StartTitle()
+    {
+        StopCurrentCoroutine();
+        Player.gameObject.SetActive(false);
+        if (ActiveMap != null) ActiveMap.gameObject.SetActive(false);
+        TitleMenu.Open();
+    }
+
+    public void StartGame()
+    {
+        StopCurrentCoroutine();
+        TitleMenu.Close();
+        Player.gameObject.SetActive(true);
+        if (ActiveMap != null) ActiveMap.gameObject.SetActive(true);
+        _currentCoroutine = StartCoroutine(MovePlayer());
+    }
+
+    void StopCurrentCoroutine()
+    {
+        if (_currentCoroutine != null)
+        {
+            StopCoroutine(_currentCoroutine);
+            _currentCoroutine = null;
+        }
     }
 }

@@ -9,7 +9,6 @@ public class SaveData : MonoBehaviour
     public bool NowLoading { get; private set; } = false;
     public bool IsSuccessLoad { get; private set; } = false;
 
-
     public void Save(RPGSceneManager manager)
     {
         PlayerPrefs.SetString("player", JsonUtility.ToJson(manager.Player.GetSaveData()));
@@ -131,5 +130,15 @@ public class SaveData : MonoBehaviour
             var key = $"temp_map_{map.name.Replace("(Clone)", "")}";
             PlayerPrefs.DeleteKey(key);
         }
+    }
+
+    public bool HaveSave
+    {
+        get => PlayerPrefs.HasKey("player");
+    }
+ 
+    public void ClearSave()
+    {
+        PlayerPrefs.DeleteAll();
     }
 }
